@@ -1,8 +1,7 @@
-import React from 'react';
 import { usePayrollBreakdown } from '../hooks/usePayroll';
 import { SalaryStructureForm } from '../components/SalaryStructureForm';
 import { SalaryBreakdown } from '../components/SalaryBreakdown';
-import { Spinner } from '../../../components/ui/Spinner';
+import { Spinner } from '@/components/common/Spinner';
 
 // Assuming we get this from an auth context or router param
 const CURRENT_EMPLOYEE_ID = 'emp-123';

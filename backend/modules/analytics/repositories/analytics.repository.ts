@@ -20,14 +20,13 @@ export class AnalyticsRepository {
   }
 
   async getEmployeeDepartmentDistribution(): Promise<any[]> {
-    // @ts-ignore
-    const profiles = await prisma.profiles.findMany({
-      select: { department: true }
+    const users = await prisma.users.findMany({
+      include: { department: true }
     });
 
     const distro: Record<string, number> = {};
-    for (const p of profiles) {
-      const dept = p.department || 'Unassigned';
+    for (const u of users) {
+      const dept = u.department?.name || 'Unassigned';
       distro[dept] = (distro[dept] || 0) + 1;
     }
 

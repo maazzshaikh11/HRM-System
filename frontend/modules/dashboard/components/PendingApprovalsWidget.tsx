@@ -1,9 +1,8 @@
-import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
-import { Table, TableHeader, TableRow, TableHead, TableCell } from '../../../components/ui/Table';
-import { Badge } from '../../../components/ui/Badge';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Table, TableHeader, TableRow, TableHead, TableCell } from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
 import { usePendingApprovals } from '../hooks/useDashboardStats';
-import { Spinner } from '../../../components/ui/Spinner';
+import { Spinner } from '@/components/common/Spinner';
 
 export const PendingApprovalsWidget = () => {
   const { data: approvals, isLoading, isError } = usePendingApprovals();
@@ -37,7 +36,7 @@ export const PendingApprovalsWidget = () => {
                   <TableCell className="font-medium">{approval.employee_id}</TableCell>
                   <TableCell className="capitalize">{approval.type}</TableCell>
                   <TableCell>{approval.days}</TableCell>
-                  <TableCell><Badge variant="warning">Pending</Badge></TableCell>
+                  <TableCell><Badge variant="secondary">Pending</Badge></TableCell>
                   <TableCell>
                     <button className="text-primary hover:underline text-sm font-medium mr-3">Approve</button>
                     <button className="text-red-600 hover:underline text-sm font-medium">Reject</button>

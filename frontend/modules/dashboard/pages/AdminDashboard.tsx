@@ -1,8 +1,7 @@
-import React from 'react';
 import { useDashboardStats } from '../hooks/useDashboardStats';
 import { StatCard } from '../components/StatCard';
 import { PendingApprovalsWidget } from '../components/PendingApprovalsWidget';
-import { Spinner } from '../../../components/ui/Spinner';
+import { Spinner } from '@/components/common/Spinner';
 
 export const AdminDashboard = () => {
   const { data: stats, isLoading, isError } = useDashboardStats();

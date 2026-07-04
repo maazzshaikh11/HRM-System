@@ -5,40 +5,39 @@ const prisma = new PrismaClient();
 
 export class PayrollRepository {
   async findByEmployeeId(employeeId: string): Promise<any> {
-    // @ts-ignore - Assuming schema will be generated
     return prisma.salary_structures.findFirst({
-      where: { employee_id: employeeId },
+      where: { user_id: parseInt(employeeId, 10) },
     });
   }
 
   async upsert(employeeId: string, data: Partial<ISalaryStructure>): Promise<any> {
-    // @ts-ignore
     const existing = await prisma.salary_structures.findFirst({
-      where: { employee_id: employeeId }
+      where: { user_id: parseInt(employeeId, 10) }
     });
 
+    const payload = { ...data } as any;
+    delete payload.id;
+    delete payload.employee_id;
+
     if (existing) {
-      // @ts-ignore
       return prisma.salary_structures.update({
         where: { id: existing.id },
-        data,
+        data: payload,
       });
     }
 
-    // @ts-ignore
     return prisma.salary_structures.create({
       data: {
-        employee_id: employeeId,
-        ...data,
-      } as any,
+        user_id: parseInt(employeeId, 10),
+        ...payload,
+      },
     });
   }
 
   async getAttendanceDays(employeeId: string, startDate: Date, endDate: Date): Promise<number> {
-    // @ts-ignore
     const attendance = await prisma.attendance.findMany({
       where: {
-        employee_id: employeeId,
+        user_id: parseInt(employeeId, 10),
         date: { gte: startDate, lte: endDate },
         status: 'present',
       },
@@ -47,14 +46,13 @@ export class PayrollRepository {
   }
 
   async getUnpaidLeaveDays(employeeId: string, startDate: Date, endDate: Date): Promise<number> {
-    // @ts-ignore
     const leaves = await prisma.leave_requests.findMany({
       where: {
-        employee_id: employeeId,
+        user_id: parseInt(employeeId, 10),
         type: 'unpaid',
         status: 'approved',
-        start_date: { gte: startDate },
-        end_date: { lte: endDate },
+        from_date: { gte: startDate },
+        to_date: { lte: endDate },
       },
     });
     return leaves.reduce((total: number, leave: any) => total + (leave.days || 0), 0);

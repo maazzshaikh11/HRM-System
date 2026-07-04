@@ -23,7 +23,7 @@ export class NotificationsController {
   static async markRead(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      await notificationsService.markNotificationRead(id);
+      await notificationsService.markNotificationRead(id as string);
       res.status(200).json({ success: true });
     } catch (error: any) {
       console.error('[NotificationsController] Error in markRead:', error);

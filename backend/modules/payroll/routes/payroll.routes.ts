@@ -1,14 +1,15 @@
+import { verifyToken, authorizeRoles } from '../../../src/middlewares/authMiddleware';
 import { Router } from 'express';
 import { PayrollController } from '../controllers/payroll.controller';
 
 const router = Router();
 
-// Mock middlewares to prevent compilation errors assuming actual exist somewhere else
-const requireAuth = (req: any, res: any, next: any) => next();
-const requireAdmin = (req: any, res: any, next: any) => next();
 
-router.get('/:employeeId', requireAuth, PayrollController.getSalary);
-router.put('/:employeeId', requireAuth, requireAdmin, PayrollController.updateSalary);
-router.get('/:employeeId/payable-days', requireAuth, requireAdmin, PayrollController.getPayableDays);
+
+
+
+router.get('/:employeeId', verifyToken, PayrollController.getSalary);
+router.put('/:employeeId', verifyToken, authorizeRoles('Admin'), PayrollController.updateSalary);
+router.get('/:employeeId/payable-days', verifyToken, authorizeRoles('Admin'), PayrollController.getPayableDays);
 
 export default router;

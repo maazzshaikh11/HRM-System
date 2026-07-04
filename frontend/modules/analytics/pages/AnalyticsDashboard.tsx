@@ -1,7 +1,6 @@
-import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { useAttendanceTrends, useDepartmentDistribution } from '../hooks/useAnalytics';
-import { Spinner } from '../../../components/ui/Spinner';
+import { Spinner } from '@/components/common/Spinner';
 
 export const AnalyticsDashboard = () => {
   const { data: trends, isLoading: trendsLoading } = useAttendanceTrends(7);

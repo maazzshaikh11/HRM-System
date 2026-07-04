@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const authMiddleware_1 = require("../../../src/middlewares/authMiddleware");
+const express_1 = require("express");
+const payroll_controller_1 = require("../controllers/payroll.controller");
+const router = (0, express_1.Router)();
+router.get('/:employeeId', authMiddleware_1.verifyToken, payroll_controller_1.PayrollController.getSalary);
+router.put('/:employeeId', authMiddleware_1.verifyToken, (0, authMiddleware_1.authorizeRoles)('Admin'), payroll_controller_1.PayrollController.updateSalary);
+router.get('/:employeeId/payable-days', authMiddleware_1.verifyToken, (0, authMiddleware_1.authorizeRoles)('Admin'), payroll_controller_1.PayrollController.getPayableDays);
+exports.default = router;

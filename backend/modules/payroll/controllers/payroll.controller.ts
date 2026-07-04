@@ -8,7 +8,7 @@ export class PayrollController {
   static async getSalary(req: Request, res: Response): Promise<void> {
     try {
       const { employeeId } = req.params;
-      const breakdown = await payrollService.getPayrollBreakdown(employeeId);
+      const breakdown = await payrollService.getPayrollBreakdown(employeeId as string);
       if (!breakdown) {
         res.status(404).json({ error: 'Salary structure not found for this employee.' });
         return;
@@ -23,9 +23,9 @@ export class PayrollController {
   static async updateSalary(req: Request, res: Response): Promise<void> {
     try {
       const { employeeId } = req.params;
-      const parsedData = salaryStructureSchema.parse({ ...req.body, employee_id: employeeId });
+      const parsedData = salaryStructureSchema.parse({ ...req.body, employee_id: employeeId as string });
       
-      const updated = await payrollService.updateSalaryStructure(employeeId, parsedData);
+      const updated = await payrollService.updateSalaryStructure(employeeId as string, parsedData);
       res.status(200).json({ data: updated });
     } catch (error: any) {
       if (error.name === 'ZodError') {
@@ -48,7 +48,7 @@ export class PayrollController {
       }
 
       const payableDays = await payrollService.calculatePayableDays(
-        employeeId, 
+        employeeId as string, 
         parseInt(month as string, 10), 
         parseInt(year as string, 10)
       );

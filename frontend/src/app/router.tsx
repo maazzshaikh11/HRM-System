@@ -5,12 +5,15 @@ import { EmployeeLayout } from "@/layouts/EmployeeLayout";
 import { AdminLayout } from "@/layouts/AdminLayout";
 import { ProtectedRoute } from "./router/ProtectedRoute";
 
+import { AdminDashboard } from '../../modules/dashboard/pages/AdminDashboard';
+import { EmployeeDashboard } from '../../modules/dashboard/pages/EmployeeDashboard';
+import { AnalyticsDashboard } from '../../modules/analytics/pages/AnalyticsDashboard';
+import { SalaryInfoPage } from '../../modules/payroll/pages/SalaryInfo';
+
 // Lazy loading placeholders
-const DashboardPlaceholder = () => <div>Dashboard Module</div>;
 const ProfilePlaceholder = () => <div>Profile Module</div>;
 const AttendancePlaceholder = () => <div>Attendance Module</div>;
 const LeavePlaceholder = () => <div>Leave Module</div>;
-const PayrollPlaceholder = () => <div>Payroll Module</div>;
 const SettingsPlaceholder = () => <div>Settings Module</div>;
 const LoginPlaceholder = () => <div>Login Module</div>;
 const NotFoundPlaceholder = () => <div>404 Not Found</div>;
@@ -38,7 +41,11 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "dashboard",
-            element: <DashboardPlaceholder />,
+            element: <EmployeeDashboard />,
+          },
+          {
+            path: "analytics",
+            element: <AnalyticsDashboard />,
           },
           {
             path: "profile",
@@ -54,7 +61,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "payroll",
-            element: <PayrollPlaceholder />,
+            element: <SalaryInfoPage />,
           },
           {
             path: "settings",
@@ -72,7 +79,10 @@ export const router = createBrowserRouter([
               {
                 element: <AdminLayout />,
                 children: [
-                  // Specific admin-only routes
+                  {
+                    path: "admin/dashboard",
+                    element: <AdminDashboard />
+                  }
                 ]
               }
             ]

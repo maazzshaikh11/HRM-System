@@ -1,18 +1,18 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { useUpdateSalary } from '../hooks/usePayroll';
 
 const salarySchema = z.object({
   wage: z.number().min(1, "Wage must be positive"),
-  basic_pct: z.number().min(0).max(100).default(50),
-  hra_pct: z.number().min(0).max(100).default(50),
-  standard_allowance: z.number().min(0).default(4167),
-  pf_employee_pct: z.number().min(0).max(100).default(12),
-  pf_employer_pct: z.number().min(0).max(100).default(12),
-  professional_tax: z.number().min(0).default(200),
+  basic_pct: z.number().min(0).max(100),
+  hra_pct: z.number().min(0).max(100),
+  standard_allowance: z.number().min(0),
+  pf_employee_pct: z.number().min(0).max(100),
+  pf_employer_pct: z.number().min(0).max(100),
+  professional_tax: z.number().min(0),
 });
 
 type SalaryFormData = z.infer<typeof salarySchema>;

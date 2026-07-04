@@ -1,5 +1,4 @@
-import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
 export const SalaryBreakdown = ({ breakdown }: { breakdown: any }) => {
   if (!breakdown) return null;
