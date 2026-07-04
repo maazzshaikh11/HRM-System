@@ -1,0 +1,33 @@
+/**
+ * leave.constants.ts
+ *
+ * Constant definitions for the Leave module.
+ */
+
+import { LeaveType, LeaveStatus } from "./leave.types";
+
+export const LEAVE_TYPES: Record<LeaveType, LeaveType> = {
+  SICK: "SICK",
+  CASUAL: "CASUAL",
+  UNPAID: "UNPAID",
+  MATERNITY: "MATERNITY",
+  PATERNITY: "PATERNITY",
+};
+
+export const LEAVE_STATUSES: Record<LeaveStatus, LeaveStatus> = {
+  PENDING: "PENDING",
+  APPROVED: "APPROVED",
+  REJECTED: "REJECTED",
+  CANCELLED: "CANCELLED",
+};
+
+export const ERROR_CODES = {
+  OVERLAPPING_LEAVE: "OVERLAPPING_LEAVE",
+  INVALID_DATE_RANGE: "INVALID_DATE_RANGE",
+  INSUFFICIENT_BALANCE: "INSUFFICIENT_BALANCE",
+  NO_ALLOCATION_FOUND: "NO_ALLOCATION_FOUND",
+  FORBIDDEN_ACCESS: "FORBIDDEN_ACCESS",
+  RECORD_NOT_FOUND: "RECORD_NOT_FOUND",
+  INVALID_STATUS_TRANSITION: "INVALID_STATUS_TRANSITION",
+  INVALID_INPUT: "INVALID_INPUT",
+};

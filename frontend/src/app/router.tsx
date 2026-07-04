@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import { AppLayout } from "@/layouts/AppLayout";
 import { AuthLayout } from "@/layouts/AuthLayout";
 import { EmployeeLayout } from "@/layouts/EmployeeLayout";
@@ -11,9 +12,11 @@ import { AnalyticsDashboard } from '../../modules/analytics/pages/AnalyticsDashb
 import { SalaryInfoPage } from '../../modules/payroll/pages/SalaryInfo';
 
 // Lazy loading placeholders
+const DashboardPlaceholder = () => <div>Dashboard Module</div>;
 const ProfilePlaceholder = () => <div>Profile Module</div>;
 const AttendancePlaceholder = () => <div>Attendance Module</div>;
 const LeavePlaceholder = () => <div>Leave Module</div>;
+const PayrollPlaceholder = () => <div>Payroll Module</div>;
 const SettingsPlaceholder = () => <div>Settings Module</div>;
 const LoginPlaceholder = () => <div>Login Module</div>;
 const NotFoundPlaceholder = () => <div>404 Not Found</div>;
@@ -41,27 +44,23 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "dashboard",
-            element: <EmployeeDashboard />,
-          },
-          {
-            path: "analytics",
-            element: <AnalyticsDashboard />,
+            element: <DashboardPlaceholder />,
           },
           {
             path: "profile",
-            element: <ProfilePlaceholder />,
+            element: <LazyPage component={ProfilePage} />,
           },
           {
             path: "attendance",
-            element: <AttendancePlaceholder />,
+            element: <LazyPage component={AttendanceDashboard} />,
           },
           {
             path: "leave",
-            element: <LeavePlaceholder />,
+            element: <LazyPage component={LeaveDashboard} />,
           },
           {
             path: "payroll",
-            element: <SalaryInfoPage />,
+            element: <PayrollPlaceholder />,
           },
           {
             path: "settings",
@@ -79,10 +78,7 @@ export const router = createBrowserRouter([
               {
                 element: <AdminLayout />,
                 children: [
-                  {
-                    path: "admin/dashboard",
-                    element: <AdminDashboard />
-                  }
+                  // Specific admin-only routes
                 ]
               }
             ]
