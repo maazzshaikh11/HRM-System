@@ -1,0 +1,31 @@
+{
+  "name": "hrms",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Enterprise Human Resource Management System",
+  "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "dev": "concurrently --names \"API,WEB\" --prefix-colors \"blue,green\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "test": "bash scripts/test.sh",
+    "test:backend": "cd backend && npm test",
+    "lint": "bash scripts/lint.sh",
+    "format": "bash scripts/format.sh",
+    "db:migrate": "cd backend && npx prisma migrate dev",
+    "db:migrate:prod": "cd backend && npx prisma migrate deploy",
+    "db:seed": "bash scripts/seed.sh",
+    "db:reset": "bash scripts/reset-db.sh",
+    "db:studio": "cd backend && npx prisma studio",
+    "db:generate": "cd backend && npx prisma generate",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.3"
+  }
+}

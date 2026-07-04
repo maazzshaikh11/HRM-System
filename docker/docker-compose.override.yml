@@ -1,0 +1,28 @@
+version: '3.9'
+
+# Development override — mounts local source for hot reload
+services:
+  backend:
+    build:
+      target: builder
+    command: npm run dev
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+    ports:
+      - '3000:3000'
+      - '9229:9229'  # Node debugger
+
+  frontend:
+    build:
+      target: builder
+    command: npm run dev -- --host 0.0.0.0
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+    ports:
+      - '5173:5173'

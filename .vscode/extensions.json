@@ -1,0 +1,29 @@
+{
+  "recommendations": [
+    // TypeScript & React
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-next",
+
+    // Tailwind
+    "bradlc.vscode-tailwindcss",
+
+    // Prisma
+    "Prisma.prisma",
+
+    // Docker
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.remote-containers",
+
+    // Git
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+
+    // DX
+    "christian-kohler.path-intellisense",
+    "mikestead.dotenv",
+    "EditorConfig.EditorConfig",
+    "yoavbls.pretty-ts-errors",
+    "aaron-bond.better-comments"
+  ]
+}
