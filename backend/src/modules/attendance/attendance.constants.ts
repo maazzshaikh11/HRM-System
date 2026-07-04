@@ -1,0 +1,27 @@
+import { AttendanceStatus } from "./attendance.types";
+
+export const ATTENDANCE_STATUSES: Record<AttendanceStatus, AttendanceStatus> = {
+  PRESENT: "PRESENT",
+  ABSENT: "ABSENT",
+  HALF_DAY: "HALF_DAY",
+  LEAVE: "LEAVE",
+  LATE: "LATE",
+  HOLIDAY: "HOLIDAY",
+};
+
+export const WORK_CONFIG = {
+  STANDARD_WORKING_HOURS: 8,
+  HALF_DAY_MIN_HOURS: 4,
+  FULL_DAY_MIN_HOURS: 7.5,
+  SHIFT_START_HOUR: 9, // 9:00 AM
+  SHIFT_START_MINUTE: 15, // 15-minute grace period (e.g. check-in after 9:15 AM is LATE)
+};
+
+export const ERROR_CODES = {
+  ALREADY_CHECKED_IN: "ALREADY_CHECKED_IN",
+  NO_ACTIVE_CHECK_IN: "NO_ACTIVE_CHECK_IN",
+  ALREADY_CHECKED_OUT: "ALREADY_CHECKED_OUT",
+  FORBIDDEN_ACCESS: "FORBIDDEN_ACCESS",
+  RECORD_NOT_FOUND: "RECORD_NOT_FOUND",
+  INVALID_INPUT: "INVALID_INPUT",
+};
