@@ -6,10 +6,13 @@ import { EmployeeLayout } from "@/layouts/EmployeeLayout";
 import { AdminLayout } from "@/layouts/AdminLayout";
 import { ProtectedRoute } from "./router/ProtectedRoute";
 
-import { AdminDashboard } from '../../modules/dashboard/pages/AdminDashboard';
-import { EmployeeDashboard } from '../../modules/dashboard/pages/EmployeeDashboard';
-import { AnalyticsDashboard } from '../../modules/analytics/pages/AnalyticsDashboard';
-import { SalaryInfoPage } from '../../modules/payroll/pages/SalaryInfo';
+import AdminDashboard from '@/features/dashboard/pages/AdminDashboard';
+import EmployeeDashboard from '@/features/dashboard/pages/EmployeeDashboard';
+// import AnalyticsDashboard from '@/features/analytics/pages/AnalyticsDashboard';
+// import SalaryInfoPage from '@/features/payroll/pages/SalaryInfo';
+import ProfilePage from '@/features/employee/pages/ProfilePage';
+import AttendanceDashboard from '@/features/attendance/pages/AttendanceDashboard';
+import { LeaveDashboard } from '@/features/leave/pages/LeaveDashboard';
 
 // Lazy loading placeholders
 const DashboardPlaceholder = () => <div>Dashboard Module</div>;
@@ -48,15 +51,15 @@ export const router = createBrowserRouter([
           },
           {
             path: "profile",
-            element: <LazyPage component={ProfilePage} />,
+            element: <ProfilePage />,
           },
           {
             path: "attendance",
-            element: <LazyPage component={AttendanceDashboard} />,
+            element: <AttendanceDashboard />,
           },
           {
             path: "leave",
-            element: <LazyPage component={LeaveDashboard} />,
+            element: <LeaveDashboard />,
           },
           {
             path: "payroll",
